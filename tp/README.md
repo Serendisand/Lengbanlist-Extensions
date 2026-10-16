@@ -10,7 +10,7 @@
 | 命令 | `/lban tp <玩家名>`（`/lban` 的子命令） |
 | 权限 | `lengbanlist.admin` |
 | 补全 | 在线玩家名前缀 |
-| 开关 | 本目录 `config.yml` 的 `enabled` |
+| 开关 | `extensions/tp/config.yml` 的 `enabled` |
 
 控制台执行会得到"玩家不在线"——控制台没有身体，没法被传送。目标玩家离线时同样是这条提示。
 

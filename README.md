@@ -1,27 +1,33 @@
 # Lengbanlist-Extensions
 
-Lengbanlist 的官方 **Lua 扩展**仓库。每个子目录就是一个可以直接丢进服务端的扩展。
+Lengbanlist 的官方 **Lua 扩展**仓库。每个 `<扩展名>.lua` 就是一个可以直接丢进服务端的扩展，
+同名子目录里是它自己的配置。
 
 ## 怎么装
 
-把想要的扩展目录整个复制到：
+把想要的扩展的 `.lua` 脚本复制到：
 
 ```
-plugins/Lengbanlist/extensions/<扩展名>/
+plugins/Lengbanlist/extensions/<扩展名>.lua
 ```
 
-然后 `/lban ext reload`（或重启服务端）。删掉目录就是卸载。
+然后 `/lban ext reload`（或重启服务端）。删掉脚本就是卸载。
 
 ```
 plugins/Lengbanlist/extensions/
-├── tp/                ← 本仓库的 tp/ 目录
-│   ├── extension.lua
-│   └── config.yml
+├── tp.lua             ← 本仓库的 tp.lua
+├── staffchat.lua      ← 本仓库的 staffchat.lua
+├── tp/
+│   └── config.yml     ← 本仓库的 tp/config.yml
 └── staffchat/
+    └── config.yml
 ```
 
-扩展的开关是它自己目录里 `config.yml` 的 `enabled`，**核心的 config.yml 里没有对应的键**——
-一个功能只有一个开关来源，别去核心配置里找。
+配置目录可以不复制——加载时会自动生成一份只含 `enabled` 的。但脚本读的键（各扩展的
+README 里列了）得自己补进 `config.yml`，插件猜不出来。
+
+扩展的开关是 `extensions/<扩展名>/config.yml` 里的 `enabled`，**核心的 config.yml 里没有对应的
+键**——一个功能只有一个开关来源，别去核心配置里找。
 
 ## 管理命令
 
