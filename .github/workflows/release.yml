@@ -4,7 +4,7 @@ name: 发布扩展
 # 然后回写 index.json 里的 version / url / sha256。
 on:
   push:
-    tags: ['v*']
+    tags: ['v*', 'V*']
   workflow_dispatch: {}
 
 permissions:
