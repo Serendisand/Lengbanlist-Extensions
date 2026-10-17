@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "updated": "2026-10-17",
+  "extensions": [
+    {
+      "id": "staffchat",
+      "type": "lua",
+      "name": "管理员频道",
+      "author": "Serendisand",
+      "version": "1.0.0",
+      "requiredApi": "[2.1,3.0)",
+      "minCore": "2.1.6",
+      "file": "staffchat.lua",
+      "sha256": "cfb0b0ec275e44ce49ce62a11e02f7e928994d9e7898593e1642a0a68a985cb8",
+      "description": "只有管理员看得见的独立聊天频道",
+      "config": "staffchat/config.yml"
+    },
+    {
+      "id": "tp",
+      "type": "lua",
+      "name": "传送",
+      "author": "Serendisand",
+      "version": "1.0.0",
+      "requiredApi": "[2.1,3.0)",
+      "minCore": "2.1.6",
+      "file": "tp.lua",
+      "sha256": "8754e5b804ec2bce02132a91538ae2a069462f1e6fb1b89c8373e00d1d5fad75",
+      "description": "传送到玩家身边",
+      "config": "tp/config.yml"
+    },
+    {
+      "id": "punishpolicy",
+      "type": "jar",
+      "name": "权重免疫与累犯升级",
+      "author": "Serendisand",
+      "version": "0.0.0",
+      "requiredApi": "[2.1,3.0)",
+      "minCore": "2.1.6",
+      "file": "Lengbanlist-Ext-PunishPolicy-1.0.0.jar",
+      "url": "",
+      "sha256": "",
+      "description": "发布 Release 后把 version / url / sha256 填上；当前为占位项，市场显示未上架"
+    }
+  ]
+}

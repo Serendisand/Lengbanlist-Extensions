@@ -1,0 +1,55 @@
+name: 发布扩展
+
+# 打 v* 标签时构建全部 Java 扩展模块，创建 Release 并上传 jar，
+# 然后回写 index.json 里的 version / url / sha256。
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # 契约模块从核心仓库取最新源码安装，避免依赖 GitHub Packages 的令牌配置
+      - name: 检出核心仓库
+        uses: actions/checkout@v4
+        with:
+          repository: Serendisand/Lengbanlist
+          path: .core
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: 安装契约模块
+        run: mvn -B -q -f .core/pom.xml -pl lengbanlist-api -am install -DskipTests
+
+      - name: 构建扩展
+        run: mvn -B -DskipTests package
+
+      - name: 创建 Release 并上传 jar
+        uses: softprops/action-gh-release@v2
+        with:
+          files: '*/target/Lengbanlist-Ext-*.jar'
+          generate_release_notes: true
+
+      - name: 回写 index.json
+        env:
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+        run: python3 .github/update_release_index.py
+
+      - name: 提交 index.json
+        run: |
+          git config user.name "Lengbanlist Bot"
+          git config user.email "bot@lengbanlist-extensions.local"
+          git add index.json
+          git diff --cached --quiet || git commit -m "chore: 发布 ${GITHUB_REF_NAME} 回写索引"
+          git push

@@ -5,7 +5,21 @@ Lengbanlist 的官方扩展仓库，两种形态：
 - **Lua 扩展**：一个 `<扩展名>.lua` 丢进数据目录就能用，不编译、热重载；
 - **Java 扩展**：独立 Bukkit 插件（Maven 模块），需要监听器、自有表或跨服能力时使用。
 
-## 怎么装（Lua）
+## 从游戏内安装（云端市场）
+
+核心自带扩展市场，索引就是本仓库根目录的 [`index.json`](index.json)：
+
+| 命令 | 作用 |
+| --- | --- |
+| `/lban ext refresh` | 拉取云端索引 |
+| `/lban ext market` | 查看云端扩展与安装状态 |
+| `/lban ext install <扩展名\|all>` | 下载并安装 |
+
+- Lua 扩展下载到 `plugins/Lengbanlist/extensions/<扩展名>.lua`，装完**自动重载**；
+- jar 扩展下载到 `plugins/<扩展名>.jar`，**重启服务器后生效**；
+- 下载走 sha256 校验；配置只在本地还没有时释放，不会覆盖你改过的设置。
+
+## 怎么装（手动 / Lua）
 
 把想要的扩展的 `.lua` 脚本复制到：
 
