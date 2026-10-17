@@ -52,4 +52,5 @@ jobs:
           git config user.email "bot@lengbanlist-extensions.local"
           git add index.json
           git diff --cached --quiet || git commit -m "chore: 发布 ${GITHUB_REF_NAME} 回写索引"
-          git push
+          # tag 事件下是 detached HEAD，必须显式推到 main
+          git push origin HEAD:main
