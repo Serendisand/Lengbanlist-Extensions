@@ -11,8 +11,8 @@ Lengbanlist 的官方扩展仓库，两种形态：
 
 | 命令 | 作用 |
 | --- | --- |
+| `/lban ext list` | 查看已装扩展与云端条目 |
 | `/lban ext refresh` | 拉取云端索引 |
-| `/lban ext market` | 查看云端扩展与安装状态 |
 | `/lban ext install <扩展名\|all>` | 下载并安装 |
 
 - Lua 扩展下载到 `plugins/Lengbanlist/extensions/<扩展名>.lua`，装完**自动重载**；
