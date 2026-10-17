@@ -1,9 +1,11 @@
 # Lengbanlist-Extensions
 
-Lengbanlist 的官方 **Lua 扩展**仓库。每个 `<扩展名>.lua` 就是一个可以直接丢进服务端的扩展，
-同名子目录里是它自己的配置。
+Lengbanlist 的官方扩展仓库，两种形态：
 
-## 怎么装
+- **Lua 扩展**：一个 `<扩展名>.lua` 丢进数据目录就能用，不编译、热重载；
+- **Java 扩展**：独立 Bukkit 插件（Maven 模块），需要监听器、自有表或跨服能力时使用。
+
+## 怎么装（Lua）
 
 把想要的扩展的 `.lua` 脚本复制到：
 
@@ -40,7 +42,7 @@ README 里列了）得自己补进 `config.yml`，插件猜不出来。
 
 权限：`lengbanlist.reload`。
 
-## 官方扩展
+## 官方 Lua 扩展
 
 | 扩展 | 命令 | 权限 | 说明 |
 | --- | --- | --- | --- |
@@ -87,8 +89,23 @@ leng.on("player_join", function(ctx)
 end)
 ```
 
-完整的脚本 API（`leng` 表上的每个函数、`ctx` 的字段、事件列表与沙箱边界）见核心仓库的
-`docs/LuaExtensions.md`。
+完整的脚本 API（`leng` 表上的每个函数、`ctx` 的字段、事件列表与沙箱边界）看核心 jar 里的
+`extensions/README.txt`，以及本仓库里 `tp.lua`、`staffchat.lua` 这两份现成例子。
+
+## 官方 Java 扩展
+
+| 模块 | 功能 | 安装 |
+| --- | --- | --- |
+| [`punishpolicy`](punishpolicy/) | 权重免疫 + 累犯升级 | 把模块打出的 jar 放进 `plugins/`，重启 |
+
+构建（需要先在本机安装核心的契约模块，或者配好 GitHub Packages 的只读令牌）：
+
+```bash
+mvn clean package
+```
+
+产物在 `punishpolicy/target/Lengbanlist-Ext-PunishPolicy-<版本>.jar`。
+每个模块的 README 里有配置说明与迁移注意事项。
 
 ## 注意
 

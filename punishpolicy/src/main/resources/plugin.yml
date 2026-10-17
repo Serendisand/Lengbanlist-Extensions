@@ -1,0 +1,8 @@
+name: Lengbanlist-Ext-PunishPolicy
+main: org.leng.ext.punishpolicy.PunishPolicyExtension
+version: ${project.version}
+api-version: '1.17'
+folia-supported: true
+depend: [Lengbanlist]
+authors: [Serendisand]
+description: 权重免疫与累犯升级，以钩子形式插进 Lengbanlist 的处罚判定

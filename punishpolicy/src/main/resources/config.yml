@@ -1,0 +1,25 @@
+# PunishPolicy：权重免疫 + 累犯升级
+# 开关就在这份配置里，核心的 config.yml 里没有对应的键。
+
+enabled: true
+
+# 只关掉其中一个功能时，取消下面两行的注释：
+# features:
+#   immunity: false
+#   escalation: false
+
+# ---------- 权重免疫 ----------
+# 目标权重高于操作者时，免疫该操作者的封禁 / 踢出。
+# 权重取值顺序：LuckPerms 组权重 → lengbanlist.weight.N 权限 → 这里的默认值。
+default-weight: 0
+# Web 面板操作者的权重（默认最高）。对应核心旧配置的 web.operator-weight。
+web-operator-weight: 2147483647
+
+# ---------- 累犯升级 ----------
+# 第 N 次封禁（含历史记录）使用的 auto 时长；超出列表按最后一档。
+tiers:
+  - 7d
+  - 30d
+  - 90d
+  - 180d
+  - 365d
