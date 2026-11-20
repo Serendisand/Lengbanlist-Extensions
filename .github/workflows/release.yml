@@ -5,8 +5,8 @@ on:
     tags: ['v*', 'V*']
   workflow_dispatch:
     inputs:
-      tag:
-        description: '要发布的 Tag（例如 v1.0.0），必须已存在'
+      version:
+        description: '版本号（如 v1.1.0'
         required: true
         type: string
 
@@ -17,10 +17,12 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
+      # 手动触发时检出 main；tag 推送时检出该 tag
       - uses: actions/checkout@v4
         with:
-          # 手动触发时检出指定 tag；tag 推送时用 github.ref
-          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref }}
+          ref: ${{ github.event_name == 'workflow_dispatch' && 'main' || github.ref }}
+          fetch-depth: 0
+          fetch-tags: true
 
       - name: 检出核心仓库
         uses: actions/checkout@v4
@@ -42,16 +44,18 @@ jobs:
       - name: 创建 Release 并上传 jar
         uses: softprops/action-gh-release@v2
         with:
-          # 手动触发时必须显式提供 tag_name
-          tag_name: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
+          # 手动触发时用输入的版本号；tag 推送时用 ref_name。
+          # 若 tag 不存在，该 Action 会基于当前 commit 自动创建。
+          tag_name: ${{ github.event_name == 'workflow_dispatch' && inputs.version || github.ref_name }}
           files: '*/target/Lengbanlist-Ext-*.jar'
           generate_release_notes: true
+          # 重跑时若 Release 已存在，覆盖它而不是失败
+          overwrite: true
 
       - name: 回写 index.json
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
-          # 手动触发时用输入的 tag，否则用 ref_name
-          GITHUB_REF_NAME: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
+          GITHUB_REF_NAME: ${{ github.event_name == 'workflow_dispatch' && inputs.version || github.ref_name }}
         run: python3 .github/update_release_index.py
 
       - name: 提交 index.json
@@ -59,8 +63,7 @@ jobs:
           git config user.name "Lengbanlist Bot"
           git config user.email "bot@lengbanlist-extensions.local"
           git add index.json
-          git diff --cached --quiet || git commit -m "chore: 发布 ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }} 回写索引"
-          # 手动触发时 HEAD 是 detached（tag 的提交），先 rebase 到 main 再推送，避免非快进
+          git diff --cached --quiet || git commit -m "chore: 发布 ${{ github.event_name == 'workflow_dispatch' && inputs.version || github.ref_name }} 回写索引"
           git fetch origin main
           git rebase origin/main
           git push origin HEAD:main
