@@ -110,6 +110,8 @@ end)
 
 | 模块 | 功能 | 安装 |
 | --- | --- | --- |
+| [`vanish`](vanish/) | 管理员隐身 | 把模块打出的 jar 放进 `plugins/`，重启 |
+| [`broadcast`](broadcast/) | 封禁人数广播 | 把模块打出的 jar 放进 `plugins/`，重启 |
 | [`punishpolicy`](punishpolicy/) | 权重免疫 + 累犯升级 | 把模块打出的 jar 放进 `plugins/`，重启 |
 
 构建（需要先在本机安装核心的契约模块，或者配好 GitHub Packages 的只读令牌）：
@@ -118,7 +120,7 @@ end)
 mvn clean package
 ```
 
-产物在 `punishpolicy/target/Lengbanlist-Ext-PunishPolicy-<版本>.jar`。
+产物在各模块的 `target/Lengbanlist-Ext-<模块名>-<版本>.jar`。
 每个模块的 README 里有配置说明与迁移注意事项。
 
 ## 注意

@@ -17,12 +17,14 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <!-- 与核心版本保持一致；扩展编译时用 provided，运行时用核心 classloader 里那份 -->
-        <lengbanlist.api.version>2.1.6</lengbanlist.api.version>
+        <lengbanlist.api.version>2.2.1</lengbanlist.api.version>
         <spigot.version>1.17.1-R0.1-SNAPSHOT</spigot.version>
     </properties>
 
     <modules>
         <module>punishpolicy</module>
+        <module>vanish</module>
+        <module>broadcast</module>
     </modules>
 
     <repositories>
@@ -48,6 +50,12 @@
             <artifactId>lengbanlist-api</artifactId>
             <version>${lengbanlist.api.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.14.4</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

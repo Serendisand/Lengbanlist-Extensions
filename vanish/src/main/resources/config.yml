@@ -1,0 +1,8 @@
+# Vanish：管理员隐身
+# 开关就在这份配置里，核心的 config.yml 里没有对应的键。
+
+enabled: true
+
+# 隐身期间是否隐藏自己的进服/退服提示
+hide-join-message: true
+hide-quit-message: true

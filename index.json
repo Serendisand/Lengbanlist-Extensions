@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updated": "2026-10-17",
+  "updated": "2026-11-20",
   "extensions": [
     {
       "id": "staffchat",
@@ -29,6 +29,19 @@
       "config": "tp/config.yml"
     },
     {
+      "id": "broadcast",
+      "type": "jar",
+      "name": "封禁广播",
+      "author": "Serendisand",
+      "version": "0.0.0",
+      "requiredApi": "[2.3,3.0)",
+      "minCore": "2.2.1",
+      "file": "",
+      "url": "",
+      "sha256": "",
+      "description": "封禁人数定时广播，支持 /lban a 与 Web 面板手动触发"
+    },
+    {
       "id": "punishpolicy",
       "type": "jar",
       "name": "权重免疫与累犯升级",
@@ -40,6 +53,19 @@
       "url": "https://github.com/Serendisand/Lengbanlist-Extensions/releases/download/V1.0.0/Lengbanlist-Ext-PunishPolicy-1.0.0.jar",
       "sha256": "c4ea2fb0617a91a81ce5d49e6313fadbae82c1586cc3712b7465f64be1900368",
       "description": "权重免疫 + 累犯升级：按权重决定谁能罚谁，auto 时长随累犯次数递增"
+    },
+    {
+      "id": "vanish",
+      "type": "jar",
+      "name": "管理员隐身",
+      "author": "Serendisand",
+      "version": "0.0.0",
+      "requiredApi": "[2.3,3.0)",
+      "minCore": "2.2.1",
+      "file": "",
+      "url": "",
+      "sha256": "",
+      "description": "管理员隐身：对其他玩家完全不可见，进服/退服提示一并隐藏"
     }
   ]
 }

@@ -1,0 +1,8 @@
+name: Lengbanlist-Ext-Broadcast
+main: org.leng.ext.broadcast.BroadcastExtension
+version: ${project.version}
+api-version: '1.17'
+folia-supported: true
+depend: [Lengbanlist]
+authors: [Serendisand]
+description: 封禁人数广播，支持定时与手动触发

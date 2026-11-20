@@ -1,0 +1,8 @@
+name: Lengbanlist-Ext-Vanish
+main: org.leng.ext.vanish.VanishExtension
+version: ${project.version}
+api-version: '1.17'
+folia-supported: true
+depend: [Lengbanlist]
+authors: [Serendisand]
+description: 管理员隐身：对其他玩家完全不可见

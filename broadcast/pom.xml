@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.leng.ext</groupId>
+        <artifactId>lengbanlist-extensions-parent</artifactId>
+        <version>1.0.0</version>
+    </parent>
+
+    <artifactId>lengbanlist-ext-broadcast</artifactId>
+    <name>Lengbanlist-Ext-Broadcast</name>
+    <description>封禁人数广播：定时广播与 Web 面板触发</description>
+
+    <build>
+        <finalName>Lengbanlist-Ext-Broadcast-${project.version}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+</project>
