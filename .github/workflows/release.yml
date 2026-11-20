@@ -1,11 +1,14 @@
 name: 发布扩展
 
-# 打 v* 标签时构建全部 Java 扩展模块，创建 Release 并上传 jar，
-# 然后回写 index.json 里的 version / url / sha256。
 on:
   push:
     tags: ['v*', 'V*']
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: '要发布的 Tag（例如 v1.0.0），必须已存在'
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -15,8 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # 手动触发时检出指定 tag；tag 推送时用 github.ref
+          ref: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref }}
 
-      # 契约模块从核心仓库取最新源码安装，避免依赖 GitHub Packages 的令牌配置
       - name: 检出核心仓库
         uses: actions/checkout@v4
         with:
@@ -37,13 +42,16 @@ jobs:
       - name: 创建 Release 并上传 jar
         uses: softprops/action-gh-release@v2
         with:
+          # 手动触发时必须显式提供 tag_name
+          tag_name: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
           files: '*/target/Lengbanlist-Ext-*.jar'
           generate_release_notes: true
 
       - name: 回写 index.json
         env:
           GITHUB_REPOSITORY: ${{ github.repository }}
-          GITHUB_REF_NAME: ${{ github.ref_name }}
+          # 手动触发时用输入的 tag，否则用 ref_name
+          GITHUB_REF_NAME: ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}
         run: python3 .github/update_release_index.py
 
       - name: 提交 index.json
@@ -51,6 +59,8 @@ jobs:
           git config user.name "Lengbanlist Bot"
           git config user.email "bot@lengbanlist-extensions.local"
           git add index.json
-          git diff --cached --quiet || git commit -m "chore: 发布 ${GITHUB_REF_NAME} 回写索引"
-          # tag 事件下是 detached HEAD，必须显式推到 main
+          git diff --cached --quiet || git commit -m "chore: 发布 ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }} 回写索引"
+          # 手动触发时 HEAD 是 detached（tag 的提交），先 rebase 到 main 再推送，避免非快进
+          git fetch origin main
+          git rebase origin/main
           git push origin HEAD:main
