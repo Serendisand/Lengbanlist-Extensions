@@ -33,12 +33,12 @@
       "type": "jar",
       "name": "封禁广播",
       "author": "Serendisand",
-      "version": "0.0.0",
+      "version": "1.0.0",
       "requiredApi": "[2.3,3.0)",
       "minCore": "2.2.2",
-      "file": "",
-      "url": "",
-      "sha256": "",
+      "file": "Lengbanlist-Ext-Broadcast-1.0.0.jar",
+      "url": "https://github.com/Serendisand/Lengbanlist-Extensions/releases/download/main/Lengbanlist-Ext-Broadcast-1.0.0.jar",
+      "sha256": "70097bff5d8c19459f9d18328c882f5d7ce833bf87b24336249338e2c8d18885",
       "description": "封禁人数定时广播，支持 /lban a 与 Web 面板手动触发"
     },
     {
@@ -50,8 +50,8 @@
       "requiredApi": "[2.1,3.0)",
       "minCore": "2.1.6",
       "file": "Lengbanlist-Ext-PunishPolicy-1.0.0.jar",
-      "url": "https://github.com/Serendisand/Lengbanlist-Extensions/releases/download/V1.0.0/Lengbanlist-Ext-PunishPolicy-1.0.0.jar",
-      "sha256": "c4ea2fb0617a91a81ce5d49e6313fadbae82c1586cc3712b7465f64be1900368",
+      "url": "https://github.com/Serendisand/Lengbanlist-Extensions/releases/download/main/Lengbanlist-Ext-PunishPolicy-1.0.0.jar",
+      "sha256": "ef5f19f7d48656f4a2635fd41f707cea79a3d0d5359a843bad5e30fd5d46b4b7",
       "description": "权重免疫 + 累犯升级：按权重决定谁能罚谁，auto 时长随累犯次数递增"
     },
     {
@@ -59,12 +59,12 @@
       "type": "jar",
       "name": "管理员隐身",
       "author": "Serendisand",
-      "version": "0.0.0",
+      "version": "1.0.0",
       "requiredApi": "[2.3,3.0)",
       "minCore": "2.2.2",
-      "file": "",
-      "url": "",
-      "sha256": "",
+      "file": "Lengbanlist-Ext-Vanish-1.0.0.jar",
+      "url": "https://github.com/Serendisand/Lengbanlist-Extensions/releases/download/main/Lengbanlist-Ext-Vanish-1.0.0.jar",
+      "sha256": "c92955f88ef02de69251754b49154e1b5acca0fc5f6c2997dc2048e68f1539f4",
       "description": "管理员隐身：对其他玩家完全不可见，进服/退服提示一并隐藏"
     }
   ]
